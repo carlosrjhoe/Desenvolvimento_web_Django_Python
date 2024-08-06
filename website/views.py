@@ -1,38 +1,38 @@
-from typing import Any
 from django.db.models.base import Model as Model
-from django.db.models.query import QuerySet
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse_lazy
 from .models import Funcionario
+from .forms import InsereFuncionarioForm
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 from django.views.generic import UpdateView
+from django.views.generic import DeleteView
+from django.views.generic import CreateView
 
-# Create your views here.
-# """Usando (Function Based Views"""
-# def lista_funcionarios(request):
-#     # Buscar funcionários
-#     funcionarios = Funcionario.objetos.all()
 
-#     # Incluindo contexto
-#     contexto = {
-#         'funcionarios': funcionarios,
-#     }
+# def criar_funcionario(request, pk):
+#     # VERIFICAR SE O METODOD É POST
+#     if request.method == 'POST':
+#         form = FormularioDeCriacao(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return HttpResponseRedirect(reverse('lista_funcionarios'))
+#     else:
+#         # Qualquer outro método: GET, OPTION, DELETE, etc...
+#         return render(request, 'website/form.html', {'form': form})
+
+class FuncionarioCreateView(CreateView):
+    template_name = 'website/criar.html'
+    model = Funcionario
+    form_class = InsereFuncionarioForm
+    success_url = reverse_lazy('website:lista_funcionarios')
     
-#     # Retornando o template para listar os funcionarios
-#     return render(request, 'website/funcionarios.html', contexto)
 
-def criar_funcionario(request, pk):
-    # VERIFICAR SE O METODOD É POST
-    if request.method == 'POST':
-        form = FormularioDeCriacao(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('lista_funcionarios'))
-    else:
-        # Qualquer outro método: GET, OPTION, DELETE, etc...
-        return render(request, 'website/form.html', {'form': form})
+class FuncionarioDeleteView(DeleteView):
+    template_name = 'website/exclui.html'
+    model = Funcionario
+    context_object_name = 'funcionario'
+    success_url = reverse_lazy('website:funcionarios')
+
 
 class IndexTemplateView(TemplateView):
     template_name = 'website/index.html'
