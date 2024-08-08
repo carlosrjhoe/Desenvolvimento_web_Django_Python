@@ -1,25 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Excluir funcionário</title>
-</head>
+{% block title %} Página Inicial {% endblock %}
 
-<body>
-    <h1>Página para excluir funcionário.</h1>
-    <br>
-    <form method="POST">
-        {% csrf_token %}
-        Você tem certeza que quer excluir
-        o funcionário <b>{{ funcionario.nome }}</b>?
-        <br><br>
-        <button type="button">
-            <a href="{% url 'lista_funcionarios' %}">Cancelar</a>
-        </button>
-        <button>Excluir</button>
-    </form>
-</body>
-
-</html>
+{% block conteudo %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Exclusão de Funcionário</h5>
+                <p class="card-text">
+                    Você tem certeza que quer excluir o funcionário
+                    <b>{{ funcionario.nome }}</b>?
+                </p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <hr />
+                    <div class="text-right">
+                        <a
+                            href="{% url 'website:lista' %}"
+                            class="btn btn-outline-danger"
+                        >
+                            Cancelar
+                        </a>
+                        <button class="btn btn-danger">Excluir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

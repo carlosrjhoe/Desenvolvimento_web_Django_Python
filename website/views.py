@@ -24,14 +24,14 @@ class FuncionarioCreateView(CreateView):
     template_name = 'website/criar.html'
     model = Funcionario
     form_class = InsereFuncionarioForm
-    success_url = reverse_lazy('website:lista_funcionarios')
+    success_url = reverse_lazy('website:lista')
     
 
 class FuncionarioDeleteView(DeleteView):
     template_name = 'website/exclui.html'
     model = Funcionario
     context_object_name = 'funcionario'
-    success_url = reverse_lazy('website:funcionarios')
+    success_url = reverse_lazy('website:lista')
 
 
 class IndexTemplateView(TemplateView):
@@ -49,7 +49,7 @@ class FuncionarioUpdateView(UpdateView):
     template_name = 'website/atualiza.html'
     model = Funcionario
     fields = ['__all__']
-    context_object_name = 'funcionario'
+    context_object_name = 'funcionarios'
 
     def get_object(self, queryset=None):
         funcionario = None

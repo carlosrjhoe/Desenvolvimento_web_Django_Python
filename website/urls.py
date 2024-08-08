@@ -12,15 +12,15 @@ urlpatterns = [
         IndexTemplateView.as_view(),
         name = 'index'
     ),
-    path('lista/', 
+    path('lista/',
         FuncionariosListView.as_view(),
         name='lista'
     ),
-    path('atualiza/<id>', 
+    path('atualiza/<int:id>', 
         FuncionarioUpdateView.as_view(),
         name='atualiza'
     ),
-    path('funcionario/excluir/<pk>', 
+    path('funcionario/excluir/<int:pk>',
         FuncionarioDeleteView.as_view(),
         name='deletar_funcionario'
     ),
