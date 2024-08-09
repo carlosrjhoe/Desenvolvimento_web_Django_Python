@@ -9,17 +9,6 @@ from django.views.generic import DeleteView
 from django.views.generic import CreateView
 
 
-# def criar_funcionario(request, pk):
-#     # VERIFICAR SE O METODOD É POST
-#     if request.method == 'POST':
-#         form = FormularioDeCriacao(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return HttpResponseRedirect(reverse('lista_funcionarios'))
-#     else:
-#         # Qualquer outro método: GET, OPTION, DELETE, etc...
-#         return render(request, 'website/form.html', {'form': form})
-
 class FuncionarioCreateView(CreateView):
     template_name = 'website/criar.html'
     model = Funcionario
