@@ -1,4 +1,5 @@
 {% load static %}
+{% load tempo_atual %}
 
 <!DOCTYPE html>
 <html>
@@ -43,9 +44,18 @@
             </button>
             <div class="collapse navbar-collapse" id="conteudo-navbar">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'website:index' %}">
                             Página Inicial
+                        </a>
+                    </li>
+                </ul>
+                <!-- Adicione a lista abaixo -->
+                <ul class="navbar-nav float-right">
+                    <li class="nav-item">
+                        <!-- Aqui está nosso filtro -->
+                        <a class="nav-link" href="#">
+                            <b>Hora: </b>{% tempo_atual %}
                         </a>
                     </li>
                 </ul>
